@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from book import book_list as book_db, Book
+from book import book_list as book_db, Book,UpdateBook
 import random
 
 app = FastAPI()
@@ -50,4 +50,22 @@ def del_book(id:int):
         raise HTTPException(status_code=404, detail="Book not found in the database")
     book_db.remove(book)
     return {f"Book with id: {book['bk_id']} deleted succesfully"}
+
+from fastapi import HTTPException
+
+@app.put("/update_book/{id}")
+def update_book(id: int, updated_book: UpdateBook):
+    book = find_book(id)
+    if not book:
+        raise HTTPException(status_code=404, detail="Book not found in the database")
+
+    updated_data = updated_book.dict(exclude_unset=True)
+
+    for key, value in updated_data.items():
+        book[key] = value  # ✅ This updates only the fields that were sent
+
+    return {"message": f"Book with id {id} updated successfully", "updated_book": book}
+
+    
+
     
