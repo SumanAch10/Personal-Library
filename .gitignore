@@ -1,0 +1,45 @@
+# Ignore virtual environments
+venv/
+env/
+.venv/
+
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions / object files
+*.so
+*.o
+*.obj
+*.dll
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints
+
+# Coverage and test reports
+htmlcov/
+.coverage
+.tox/
+.pytest_cache/
