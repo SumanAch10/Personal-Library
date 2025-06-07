@@ -62,7 +62,7 @@ def update_book(id: int, updated_book: UpdateBook):
     updated_data = updated_book.dict(exclude_unset=True)
 
     for key, value in updated_data.items():
-        book[key] = value  # ✅ This updates only the fields that were sent
+        book[key] = value  # ✅ This updates only the fields that were sentf
 
     return {"message": f"Book with id {id} updated successfully", "updated_book": book}
 
