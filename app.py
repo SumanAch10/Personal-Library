@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException,status,Response
 from book import book_list as book_db, Book,UpdateBook
 import random
 
@@ -26,7 +26,7 @@ def show_response():
 def show_all_books():
     return book_db
 
-@app.post("/add_books")
+@app.post("/add_books",status_code=status.HTTP_201_CREATED)
 def add_books(book: Book):
     book_data = book.dict()
     book_data["bk_id"] = generate_unique_id()
@@ -43,15 +43,15 @@ def get_book_by_id(id: int):
         raise HTTPException(status_code=404, detail="Book not found in the database")
     return book
 
-@app.delete("/delete_book/{id}")
+@app.delete("/delete_book/{id}",status_code=status.HTTP_204_NO_CONTENT)
 def del_book(id:int):
     book = find_book(id)
     if not book:
         raise HTTPException(status_code=404, detail="Book not found in the database")
     book_db.remove(book)
-    return {f"Book with id: {book['bk_id']} deleted succesfully"}
+    return Response(status_code = status.HTTP_204_NO_CONTENT)
 
-from fastapi import HTTPException
+# from fastapi import HTTPException
 
 @app.put("/update_book/{id}")
 def update_book(id: int, updated_book: UpdateBook):
