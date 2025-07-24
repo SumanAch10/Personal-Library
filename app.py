@@ -63,7 +63,6 @@ def update_book(id: int, updated_book: UpdateBook):
 
     for key, value in updated_data.items():
         book[key] = value  # ✅ This updates only the fields that were sentf
-
     return {"message": f"Book with id {id} updated successfully", "updated_book": book}
 
     
