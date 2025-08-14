@@ -1,1 +1,5 @@
 # import all models to register metadata
+from app.db.base_class import Base
+from app.models.user import User
+from app.models.book import Books
+
